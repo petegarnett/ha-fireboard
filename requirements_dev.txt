@@ -5,7 +5,7 @@ pytest-cov>=4.1.0
 pytest-homeassistant-custom-component>=0.13.0
 
 # HTTP mocking for API client tests
-aioresponses>=0.7.6
+aioresponses>=0.7.8
 
 # Linting & formatting
 ruff>=0.6.0
