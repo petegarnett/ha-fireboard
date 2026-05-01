@@ -8,7 +8,8 @@ from homeassistant.core import HomeAssistant
 from .const import PLATFORMS
 
 # Type alias for typed runtime_data — populated in Phase 3
-type FireboardConfigEntry = ConfigEntry  # will be ConfigEntry[FireboardCoordinator] later
+# Will become ConfigEntry[FireboardCoordinator] later.
+type FireboardConfigEntry = ConfigEntry
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: FireboardConfigEntry) -> bool:

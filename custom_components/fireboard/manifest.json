@@ -11,6 +11,5 @@
   "requirements": [],
   "dependencies": [],
   "iot_class": "cloud_polling",
-  "integration_type": "hub",
-  "quality_scale": "bronze"
+  "integration_type": "hub"
 }
