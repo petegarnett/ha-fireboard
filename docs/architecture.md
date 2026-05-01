@@ -6,46 +6,46 @@ This integration follows Home Assistant's canonical cloud-polling pattern:
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│                      Home Assistant                          │
+│                       Home Assistant                         │
 │                                                              │
-│  ┌────────────────────┐         ┌──────────────────────┐   │
-│  │  Config Flow       │         │  Options Flow        │   │
-│  │  (config_flow.py)  │         │  (config_flow.py)    │   │
-│  └─────────┬──────────┘         └──────────┬───────────┘   │
-│            │ creates                        │ updates       │
-│            ▼                                ▼               │
-│  ┌──────────────────────────────────────────────────────┐  │
-│  │  ConfigEntry (entry.runtime_data = coordinator)      │  │
-│  └─────────┬────────────────────────────────────────────┘  │
-│            │                                                │
-│            ▼                                                │
-│  ┌──────────────────────────────────────────────────────┐  │
-│  │  FireboardDataUpdateCoordinator (coordinator.py)     │  │
-│  │  - Single instance per account                       │  │
-│  │  - Polls every ~30s                                  │  │
-│  │  - Holds: { devices, temps, drivelogs, sessions }    │  │
-│  └─────────┬────────────────────────────────────────────┘  │
-│            │ uses                                           │
-│            ▼                                                │
-│  ┌──────────────────────────────────────────────────────┐  │
-│  │  FireboardClient (api.py)                            │  │
-│  │  - aiohttp wrapper                                   │  │
-│  │  - Token-bucket rate limiter (17 / 5 min)            │  │
-│  │  - Custom exceptions                                 │  │
-│  └─────────┬────────────────────────────────────────────┘  │
-│            │                                                │
-│            │ HTTPS                                          │
-│            ▼                                                │
-│  ┌──────────────────────────────────────────────────────┐  │
-│  │  fireboard.io REST API                               │  │
-│  └──────────────────────────────────────────────────────┘  │
+│  ┌────────────────────┐      ┌──────────────────────┐        │
+│  │   Config Flow      │      │   Options Flow       │        │
+│  │  (config_flow.py)  │      │  (config_flow.py)    │        │
+│  └─────────┬──────────┘      └──────────┬───────────┘        │
+│            │ creates                    │ updates            │
+│            ▼                            ▼                    │
+│  ┌──────────────────────────────────────────────────────┐    │
+│  │  ConfigEntry (entry.runtime_data = coordinator)      │    │
+│  └─────────┬────────────────────────────────────────────┘    │
+│            │                                                 │
+│            ▼                                                 │
+│  ┌──────────────────────────────────────────────────────┐    │
+│  │  FireboardDataUpdateCoordinator (coordinator.py)     │    │
+│  │   - Single instance per account                      │    │
+│  │   - Polls every ~30s                                 │    │
+│  │   - Holds: { devices, temps, drivelogs, sessions }   │    │
+│  └─────────┬────────────────────────────────────────────┘    │
+│            │ uses                                            │
+│            ▼                                                 │
+│  ┌──────────────────────────────────────────────────────┐    │
+│  │  FireboardClient (api.py)                            │    │
+│  │   - aiohttp wrapper                                  │    │
+│  │   - Token-bucket rate limiter (17 / 5 min)           │    │
+│  │   - Custom exceptions                                │    │
+│  └─────────┬────────────────────────────────────────────┘    │
+│            │                                                 │
+│            │ HTTPS                                           │
+│            ▼                                                 │
+│  ┌──────────────────────────────────────────────────────┐    │
+│  │  fireboard.io REST API                               │    │
+│  └──────────────────────────────────────────────────────┘    │
 │                                                              │
-│  ┌──────────────────────────────────────────────────────┐  │
-│  │  Entity platforms (sensor.py, binary_sensor.py)      │  │
-│  │  - CoordinatorEntity subclasses                      │  │
-│  │  - Read from coordinator.data                        │  │
-│  │  - One HA device per Fireboard, sensors grouped      │  │
-│  └──────────────────────────────────────────────────────┘  │
+│  ┌──────────────────────────────────────────────────────┐    │
+│  │  Entity platforms (sensor.py, binary_sensor.py)      │    │
+│  │   - CoordinatorEntity subclasses                     │    │
+│  │   - Read from coordinator.data                       │    │
+│  │   - One HA device per Fireboard, sensors grouped     │    │
+│  └──────────────────────────────────────────────────────┘    │
 └──────────────────────────────────────────────────────────────┘
 ```
 
