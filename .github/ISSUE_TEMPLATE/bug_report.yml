@@ -1,0 +1,55 @@
+name: Bug report
+description: Report a problem with the Fireboard integration
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug! Please fill in the details below.
+  - type: input
+    id: ha_version
+    attributes:
+      label: Home Assistant version
+      placeholder: "e.g. 2026.4.0"
+    validations:
+      required: true
+  - type: input
+    id: integration_version
+    attributes:
+      label: Fireboard integration version
+      placeholder: "e.g. 1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: hardware
+    attributes:
+      label: Fireboard hardware model(s)
+      placeholder: "e.g. Fireboard 2 Drive"
+    validations:
+      required: true
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: What happened?
+      description: A clear description of the bug and what you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: |
+        Enable debug logging by adding the following to configuration.yaml and restarting:
+        ```yaml
+        logger:
+          logs:
+            custom_components.fireboard: debug
+        ```
+      render: shell
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: |
+        Please attach the diagnostics dump (Settings → Devices & Services → Fireboard → ⋮ → Download diagnostics).
+        Drag and drop the file here.
