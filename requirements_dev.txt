@@ -8,4 +8,4 @@ pytest-homeassistant-custom-component>=0.13.0
 aioresponses>=0.7.6
 
 # Linting & formatting
-ruff>=0.6.0
+ruff>=0.15.12
